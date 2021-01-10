@@ -19,43 +19,12 @@
             <ul class="steps-list">
                 <li :class="{
                 'steps-item': true,
-                'active': isActiveStep === 0,
-                'done': isActiveStep > 0,
+                'active': isActiveStep === idx,
+                'done': isActiveStep > idx,
                 }"
-                    @click="setActive(0)"
-                ><span>1</span> {{ this.steps[0].title }}
-                </li>
-                <li :class="{
-                'steps-item': true,
-                'active': isActiveStep === 1,
-                'done': isActiveStep > 1,
-                }"
-                    @click="setActive(1)"
-                ><span>2</span> {{ this.steps[1].title }}
-                </li>
-                <li :class="{
-                'steps-item': true,
-                'active': isActiveStep === 2,
-                'done': isActiveStep > 2,
-                }"
-                    @click="setActive(2)">
-                    <span>3</span> {{ this.steps[2].title }}
-                </li>
-                <li :class="{
-                'steps-item': true,
-                'active': isActiveStep === 3,
-                'done': isActiveStep > 3,
-                }"
-                    @click="setActive(3)">
-                    <span>4</span> {{ this.steps[3].title }}
-                </li>
-                <li :class="{
-                'steps-item': true,
-                'active': isActiveStep === 4,
-                'done': isActiveStep > 4,
-                }"
-                    @click="setActive(4)">
-                    <span>5</span> {{ this.steps[4].title }}
+                    v-for="(item, idx) in steps"
+                    @click="setActive(idx)"
+                ><span>{{idx + 1}}</span> {{ item.title }}
                 </li>
             </ul>
             <div v-if="isActiveStep < 4">
