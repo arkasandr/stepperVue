@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Основы Vue</title>
+    <link rel="stylesheet" href="theme.css"/>
+</head>
+<body>
+
+<div class="container" id="app">
+    <div class="card">
+        <h1>План по изучению Vue.js</h1>
+
+        <div class="steps">
+            <div class="steps-content">
+                {{ this.steps[this.activeIndex].text }}
+            </div>
+            <ul class="steps-list">
+                <li class="steps-item done"><span>1</span> {{ this.steps[0].title }}</li>
+                <li class="steps-item done"><span>2</span> {{ this.steps[1].title }}</li>
+                <li class="steps-item active"><span>3</span> {{ this.steps[2].title }}</li>
+                <li class="steps-item"><span>4</span> {{ this.steps[3].title }}</li>
+                <li class="steps-item"><span>5</span> {{ this.steps[4].title }}</li>
+            </ul>
+            <div v-if="this.activeIndex < 4">
+                <button
+                        class="btn"
+                        @click="prev"
+                        :disabled="isPreviousButtonTurnOf"
+                >
+                    Назад
+                </button>
+                <button
+                        class="btn primary"
+                        @click="nextOrFinish"
+                >
+                    Вперед
+                </button>
+            </div>
+          <div v-else-if="!isLastStepActive">
+            <button
+                    class="btn"
+                    @click="prev"
+            >
+              Назад
+            </button>
+            <button
+                    class="btn primary"
+                    @click="nextOrFinish"
+            >
+              Закончить
+            </button>
+          </div>
+          <div v-else-if="isLastStepActive">
+            <button
+                    class="btn"
+                    @click="reset"
+            >
+              Начать заного
+            </button>
+          </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="vue.js"></script>
+</body>
+</html>
