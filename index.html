@@ -14,16 +14,51 @@
 
         <div class="steps">
             <div class="steps-content">
-                {{ this.steps[this.activeIndex].text }}
+                {{ this.steps[isActiveStep].text }}
             </div>
             <ul class="steps-list">
-                <li class="steps-item done"><span>1</span> {{ this.steps[0].title }}</li>
-                <li class="steps-item done"><span>2</span> {{ this.steps[1].title }}</li>
-                <li class="steps-item active"><span>3</span> {{ this.steps[2].title }}</li>
-                <li class="steps-item"><span>4</span> {{ this.steps[3].title }}</li>
-                <li class="steps-item"><span>5</span> {{ this.steps[4].title }}</li>
+                <li :class="{
+                'steps-item': true,
+                'active': isActiveStep === 0,
+                'done': isActiveStep > 0,
+                }"
+                    @click="setActive(0)"
+                ><span>1</span> {{ this.steps[0].title }}
+                </li>
+                <li :class="{
+                'steps-item': true,
+                'active': isActiveStep === 1,
+                'done': isActiveStep > 1,
+                }"
+                    @click="setActive(1)"
+                ><span>2</span> {{ this.steps[1].title }}
+                </li>
+                <li :class="{
+                'steps-item': true,
+                'active': isActiveStep === 2,
+                'done': isActiveStep > 2,
+                }"
+                    @click="setActive(2)">
+                    <span>3</span> {{ this.steps[2].title }}
+                </li>
+                <li :class="{
+                'steps-item': true,
+                'active': isActiveStep === 3,
+                'done': isActiveStep > 3,
+                }"
+                    @click="setActive(3)">
+                    <span>4</span> {{ this.steps[3].title }}
+                </li>
+                <li :class="{
+                'steps-item': true,
+                'active': isActiveStep === 4,
+                'done': isActiveStep > 4,
+                }"
+                    @click="setActive(4)">
+                    <span>5</span> {{ this.steps[4].title }}
+                </li>
             </ul>
-            <div v-if="this.activeIndex < 4">
+            <div v-if="isActiveStep < 4">
                 <button
                         class="btn"
                         @click="prev"
@@ -38,28 +73,28 @@
                     Вперед
                 </button>
             </div>
-          <div v-else-if="!isLastStepActive">
-            <button
-                    class="btn"
-                    @click="prev"
-            >
-              Назад
-            </button>
-            <button
-                    class="btn primary"
-                    @click="nextOrFinish"
-            >
-              Закончить
-            </button>
-          </div>
-          <div v-else-if="isLastStepActive">
-            <button
-                    class="btn"
-                    @click="reset"
-            >
-              Начать заного
-            </button>
-          </div>
+            <div v-else-if="!isLastStepActive">
+                <button
+                        class="btn"
+                        @click="prev"
+                >
+                    Назад
+                </button>
+                <button
+                        class="btn primary"
+                        @click="nextOrFinish"
+                >
+                    Закончить
+                </button>
+            </div>
+            <div v-else-if="isLastStepActive">
+                <button
+                        class="btn"
+                        @click="reset"
+                >
+                    Начать заного
+                </button>
+            </div>
         </div>
     </div>
 </div>

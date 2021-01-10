@@ -35,8 +35,6 @@ const App = {
         // когда нажимаем кнопку назад
         prev() {
             this.activeIndex--
-            console.log('Шаг: ' + this.activeIndex)
-
         },
 
         // начать заново
@@ -48,22 +46,19 @@ const App = {
         nextOrFinish() {
             if (this.activeIndex < 4) {
                 this.activeIndex++
-                console.log('Шаг: ' + this.activeIndex)
             } else {
                 this.finishIndex = 1
-                console.log('Закончить: ' + this.finishIndex)
             }
         },
 
         // когда нажимаем на определенный шаг
         setActive(idx) {
-
+            this.activeIndex = idx
         }
 
     },
     computed: {
 
-        // тут стоит определить несколько свойств:
         // 1. текущий выбранный шаг
         isActiveStep() {
             return this.activeIndex
@@ -77,7 +72,6 @@ const App = {
 
         // 3. находимся ли мы на последнем шаге
         isLastStepActive() {
-            console.log('isLastStepActive: ' + this.finishIndex)
             return this.finishIndex !== 0
         }
 
