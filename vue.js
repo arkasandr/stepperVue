@@ -73,6 +73,10 @@ const App = {
         // 3. находимся ли мы на последнем шаге
         isLastStepActive() {
             return this.finishIndex !== 0
+        },
+
+        isNotLastStep() {
+            return this.activeIndex < 4
         }
 
     }
