@@ -6,7 +6,7 @@ const App = {
     data() {
         return {
             activeIndex: 0, // то, что позволяет определить текущий активный шаг
-            finishIndex: 0,
+            finishIndex: false,
             steps: [
                 {
                     title: 'Основы',
@@ -34,6 +34,7 @@ const App = {
     methods: {
         // когда нажимаем кнопку назад
         prev() {
+            if (this.activeIndex !== 0)
             this.activeIndex--
         },
 
@@ -47,7 +48,7 @@ const App = {
             if (this.activeIndex < 4) {
                 this.activeIndex++
             } else {
-                this.finishIndex = 1
+                this.finishIndex = true
             }
         },
 
@@ -60,19 +61,19 @@ const App = {
     computed: {
 
         // 1. текущий выбранный шаг
-        isActiveStep() {
-            return this.activeIndex
+        isCurrentStep() {
+            return this.steps[this.activeIndex]
         },
 
         // 2. выключена ли кнопка назад
         isPreviousButtonTurnOf() {
-            this.finishIndex = 0
+            this.finishIndex = false
             return this.activeIndex < 1
         },
 
         // 3. находимся ли мы на последнем шаге
         isLastStepActive() {
-            return this.finishIndex !== 0
+            return this.finishIndex !== false
         },
 
         isNotLastStep() {

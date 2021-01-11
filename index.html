@@ -14,13 +14,13 @@
 
         <div class="steps">
             <div class="steps-content">
-                {{ this.steps[isActiveStep].text }}
+                {{ isCurrentStep.text }}
             </div>
             <ul class="steps-list">
                 <li :class="{
                 'steps-item': true,
-                'active': isActiveStep === idx,
-                'done': isActiveStep > idx,
+                'active': this.activeIndex === idx,
+                'done': this.activeIndex > idx,
                 }"
                     v-for="(item, idx) in steps"
                     @click="setActive(idx)"
